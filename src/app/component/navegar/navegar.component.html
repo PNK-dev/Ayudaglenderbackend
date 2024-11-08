@@ -1,0 +1,34 @@
+<header>
+    <nav>
+        <a [routerLink]="['/tipo']">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                <line x1="3" y1="9" x2="21" y2="9"/>
+            </svg>
+            Tipo
+        </a>
+
+        <a [routerLink]="['/marca']">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                <line x1="12" y1="17" x2="12" y2="17"/>
+            </svg>
+            Marca
+        </a>
+
+        <a [routerLink]="['/coche']">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9L17 10H7l-3.5 1.1C2.7 11.3 2 12.1 2 13v3c0 .6.4 1 1 1h2"/>
+                <circle cx="7" cy="17" r="2"/>
+                <circle cx="17" cy="17" r="2"/>
+                <path d="M5 17H3v-3c0-.6.4-1 1-1h14c.6 0 1 .4 1 1v3h-2"/>
+            </svg>
+            Coche
+        </a>
+    </nav>
+</header>
+
+<div>
+    <h1>{{ ubicacionActual }}</h1>
+</div>

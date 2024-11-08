@@ -1,0 +1,85 @@
+<div class="p-component">
+  <app-navegar [ubicacionActual]="'Menú Marca'"></app-navegar>
+
+  <div class="p-grid p-mt-3">
+    <div class="p-col-12">
+      <!-- Botones -->
+      <div class="p-d-flex p-jc-end p-mb-3">
+        <p-button icon="pi pi-refresh" 
+          label="Actualizar" 
+          (onClick)="listarMarcas()"
+          styleClass="p-button-outlined p-button-primary p-mr-2">
+        </p-button>
+
+        <p-button icon="pi pi-plus" 
+          label="Nueva Marca"
+          (onClick)="showDialogCreate()"
+          styleClass="p-button-outlined p-button-info">
+        </p-button>
+      </div>
+
+      <!-- Buscador -->
+      <span class="p-input-icon-left p-mb-3">
+        <i class="pi pi-search"></i>
+        <input pInputText type="text" [(ngModel)]="filtroNombre" 
+          placeholder="Buscar por nombre"/>
+      </span>
+
+      <!-- Tabla -->
+      <p-table [value]="filtrarMarcas()" 
+        [responsive]="true" 
+        [loading]="cargando"
+        [paginator]="true" 
+        [rows]="5"
+        [showCurrentPageReport]="true">
+        
+        <ng-template pTemplate="header">
+          <tr>
+            <th>#</th>
+            <th>Nombre</th>
+            <th>Acción</th>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-marca let-i="rowIndex">
+          <tr>
+            <td>{{ i + 1 }}</td>
+            <td>{{marca.nombre}}</td>
+            <td>
+              <p-button icon="pi pi-pencil"
+                (onClick)="showDialogEdit(marca.id)"
+                styleClass="p-button-rounded p-button-text p-button-success p-mr-2">
+              </p-button>
+              <p-button icon="pi pi-trash"
+                (onClick)="deleteMarca(marca.id)"
+                styleClass="p-button-rounded p-button-text p-button-danger">
+              </p-button>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>
+
+<!-- Diálogo -->
+<p-dialog header="{{titulo}}" [(visible)]="visible"
+  [modal]="true" 
+  [style]="{width: '450px'}"
+  styleClass="p-fluid">
+  
+  <div class="p-field">
+    <label for="nombre">Nombre</label>
+    <input pInputText id="nombre" [(ngModel)]="nombreTemp" required autofocus />
+  </div>
+
+  <ng-template pTemplate="footer">
+    <p-button label="Cancelar" icon="pi pi-times" (onClick)="visible = false" 
+      styleClass="p-button-text"></p-button>
+    <p-button label="{{opc}}" icon="pi pi-check" (onClick)="opcion()" 
+      [disabled]="!nombreTemp || nombreTemp.trim() === ''"></p-button>
+  </ng-template>
+</p-dialog>
+
+<p-toast></p-toast>
+<p-confirmDialog></p-confirmDialog>
